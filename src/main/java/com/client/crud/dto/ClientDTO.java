@@ -1,14 +1,22 @@
 package com.client.crud.dto;
 
 import com.client.crud.entities.Client;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 public class ClientDTO {
     private Long id;
+
+    @Size(min = 3, message = "Nome precisa ter pelo menos 3 caracteres")
+    @NotBlank(message = "Campo não pode ser vazio")
     private String name;
     private String cpf;
     private Double income;
+
+    @PastOrPresent(message = "Não pode ser uma data futura")
     private LocalDate birthDate;
     private Integer children;
 
